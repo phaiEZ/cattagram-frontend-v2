@@ -5,7 +5,7 @@ import { CatProfile } from "../type/user";
 
 import { fetchUser } from "../api/userApi";
 import { message } from "antd";
-import { Tabs } from "antd";
+import { Tabs, Button } from "antd";
 import { fetchUserImage } from "../api/image";
 import Cookies from "js-cookie";
 import { img } from "../type/img";
@@ -48,7 +48,7 @@ const ProtectedPage: React.FC = () => {
   }, [catProfile]);
 
   return (
-    <div className="flex flex-col  h-screen px-16 pt-16 gap-8">
+    <div className="flex flex-col ml-12 h-screen pt-16 gap-8">
       <div className="flex w-full gap-16">
         <div className="bg-white p-4 pb-12 shadow-lg">
           <img
@@ -70,9 +70,10 @@ const ProtectedPage: React.FC = () => {
               <div>เพศ : {catProfile?.gender}</div>
               <div>เจ้าของ : {catProfile?.ownerName}</div>
               <div>เจ้าของ : {catProfile?.ownerName}</div>
+              <div>เจ้าของ : {catProfile?.ownerName}</div>
             </div>
           </div>
-          <div className="font-kanit w-full  text-[#000000] bg-white  border-2 p-2 my-2 rounded-md border-slate-100    ">
+          <div className="font-kanit w-5/6   text-[#000000] bg-white  border-2 p-2 my-2 rounded-md border-slate-100    ">
             {catProfile?.description}
           </div>
         </div>
@@ -82,29 +83,34 @@ const ProtectedPage: React.FC = () => {
         type="card"
         size="large"
         items={[
-          { label: `CatX`, key: "1", children: <>hello</> },
           {
             label: `Photos`,
-            key: "2",
+            key: "1",
             children: (
-              <div className="grid grid-cols-4 gap-8 ">
-                {images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="bg-white p-4 pb-8 shadow-lg mx-auto ml-0 flex flex-col gap-4">
-                    <img
-                      src={image.img}
-                      alt={`User image ${index}`}
-                      className="h-[300px] w-[300px] object-cover"
-                    />
-                    <div className="text-kanit text-md">
-                      {image.description}
+              <div className="flex flex-col gap-4">
+                <Button type="primary" className="w-28">
+                  Upload img
+                </Button>
+                <div className="grid grid-cols-5 gap-8 ">
+                  {images.map((image, index) => (
+                    <div
+                      key={index}
+                      className="bg-white p-4 pb-8 shadow-md mx-auto ml-0 flex flex-col gap-4">
+                      <img
+                        src={image.img}
+                        alt={`User image ${index}`}
+                        className="h-[300px] w-[300px] object-cover"
+                      />
+                      <div className="text-kanit text-md">
+                        {image.description}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             ),
           },
+          { label: `CatX`, key: "2", children: <>hello</> },
         ]}
       />
     </div>

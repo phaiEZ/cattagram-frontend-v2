@@ -34,10 +34,12 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black w-full">
+    <div className="flex items-center justify-center min-h-screen bg-[#001529] w-full">
       <div className="bg-white shadow-md rounded-lg p-8 w-96">
         <div className="text-center mb-8">
-          <div className="font-logotext text-[64px] text-black ">Catagram</div>
+          <div className="font-logotext text-[64px] text-[#001529] ">
+            Catagram
+          </div>
         </div>
         <Form name="login" onFinish={onFinish} className="space-y-6">
           <Form.Item
@@ -59,10 +61,10 @@ const Login: React.FC = () => {
             <Button
               htmlType="submit"
               loading={loading}
-              className="w-full rounded-lg bg-black text-white hover:bg-gray-800"
+              className="w-full rounded-lg bg-[#001529] text-white hover:bg-gray-800"
               style={{
-                backgroundColor: "black",
-                borderColor: "black",
+                backgroundColor: "#001529",
+                borderColor: "#001529",
                 color: "white",
               }}>
               Login

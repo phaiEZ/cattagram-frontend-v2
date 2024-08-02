@@ -16,11 +16,24 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
 
   return (
     <html lang="en">
-      <body>
+      <body
+        style={{
+          backgroundImage: "url('bg.png')",
+        }}>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
+            zIndex: 0,
+          }}></div>
         <AntdRegistry>
           <div className="flex ">
             {showNavbar && <Navbar />}
-            <div className={`flex-1 ${showNavbar ? "ml-52" : "w-full"}`}>
+            <div className={`flex-1 z-50 ${showNavbar ? "ml-64" : "w-full"}`}>
               {children}
             </div>
           </div>
