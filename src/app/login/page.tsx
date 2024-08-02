@@ -1,12 +1,12 @@
+// src/components/Login.tsx
 "use client";
 
 import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import qs from "qs";
 import Link from "next/link";
+import { login } from "../api/authApi"; // Adjust the import path as necessary
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -15,30 +15,11 @@ const Login: React.FC = () => {
   const onFinish = async (values: { username: string; password: string }) => {
     setLoading(true);
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/auth/signin",
-        qs.stringify({
-          username: values.username,
-          password: values.password,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
-
-      console.log(response.data);
-
+      const response = await login(values.username, values.password);
       if (response.status === 201) {
         message.success("Login successful!");
-
         const token = response.data.accessToken;
-
-        Cookies.set("token", token, { expires: 1 });
-
-        console.log("Token set:", Cookies.get("token"));
-
+        Cookies.set("token", token);
         router.push("/");
       } else {
         message.error("Login failed: " + response.data.message);
@@ -57,7 +38,6 @@ const Login: React.FC = () => {
       <div className="bg-white shadow-md rounded-lg p-8 w-96">
         <div className="text-center mb-8">
           <div className="font-logotext text-[64px] text-black ">Catagram</div>
-          <h2 className="text-2xl font-bold text-gray-800">Login</h2>
         </div>
         <Form name="login" onFinish={onFinish} className="space-y-6">
           <Form.Item

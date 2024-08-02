@@ -18,9 +18,9 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
     <html lang="en">
       <body>
         <AntdRegistry>
-          <div className="flex">
+          <div className="flex ">
             {showNavbar && <Navbar />}
-            <div className={`flex-1 ${showNavbar ? "ml-4" : "w-full"}`}>
+            <div className={`flex-1 ${showNavbar ? "ml-52" : "w-full"}`}>
               {children}
             </div>
           </div>

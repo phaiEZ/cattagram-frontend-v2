@@ -18,7 +18,7 @@ const items: MenuItem[] = [
     key: "logo",
     label: (
       <Link href={"/"} className="flex items-center justify-center">
-        <div className="font-logotext text-3xl text-white">Catagram</div>
+        <div className="font-logotext text-4xl text-white">Catagram</div>
       </Link>
     ),
     disabled: true,
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col fixed ">
       <Menu
         onClick={onClick}
         style={{ width: 256 }}
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
         mode="inline"
         theme="dark"
         items={items}
-        className="flex flex-col flex-grow"
+        className="flex flex-col flex-grow "
       />
     </div>
   );
