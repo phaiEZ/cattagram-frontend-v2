@@ -7,6 +7,8 @@ import { CatProfile } from "./type/user";
 import Cookies from "js-cookie";
 import { message } from "antd";
 import { Button, Modal, Divider, Input } from "antd";
+import CatxCard from "./components/CatxCard";
+import { fetchAllCatx } from "./api/catx";
 
 const Home: React.FC = () => {
   const router = useRouter();
@@ -14,6 +16,8 @@ const Home: React.FC = () => {
   const [catProfile, setCatProfile] = useState<CatProfile | null>(null);
 
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+
+  const [catxPosts, setCatxPosts] = useState<any[]>([]);
 
   const showModal = () => {
     setIsPostModalOpen(true);
@@ -42,6 +46,21 @@ const Home: React.FC = () => {
     };
 
     getUser();
+  }, []);
+
+  useEffect(() => {
+    const fetchCatxData = async () => {
+      try {
+        const data = await fetchAllCatx();
+        setCatxPosts(data);
+        console.log("catx", data);
+      } catch (error) {
+        message.error("Failed to fetch cat profiles.");
+        console.error(error);
+      }
+    };
+
+    fetchCatxData();
   }, []);
 
   return (
@@ -79,7 +98,6 @@ const Home: React.FC = () => {
           />
         </div>
       </Modal>
-
       <div className=" bg-white shadow-md px-4 p-8 rounded-xl flex items-center gap-4 w-full ">
         <img
           className="h-16 w-16 object-cover rounded-full"
@@ -93,31 +111,7 @@ const Home: React.FC = () => {
           </div>
         </button>
       </div>
-
-      <div className=" bg-white shadow-md px-4 p-4 rounded-xl flex flex-col gap-4 w-full ">
-        <div className="flex flex-row items-center gap-4">
-          <img
-            className="h-16 w-16 object-cover rounded-full"
-            src={catProfile?.profilePic}
-          />
-          <div>
-            <div className="font-bold flex items-center gap-1">
-              <div className="text-xl">{catProfile?.catName}</div>
-              <div className="text-md ">({catProfile?.breeds})</div>
-            </div>
-            <div className=" text-md text-gray-600">
-              {catProfile?.ownerName}
-            </div>
-            <div className="text-gray-400">{catProfile?.created}</div>
-          </div>
-        </div>
-        <div className="text-black text-xl p-2">{catProfile?.description}</div>
-        <div className="grid grid-cols-4">
-          <Button>
-            <div className="text-gray-600 font-bold">comment</div>
-          </Button>
-        </div>
-      </div>
+      {catProfile && <CatxCard CatxCard={catProfile} />}
     </div>
   );
 };

@@ -6,31 +6,3 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.dark-modal .ant-modal-content {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .dark-modal .ant-modal-header {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .dark-modal .ant-modal-footer {
-    background-color: #333;
-  }
-  
-  .dark-modal .ant-modal-title {
-    color: #fff;
-  }
-  
-  .dark-modal .ant-btn-primary {
-    background-color: #555;
-    border-color: #555;
-  }
-  
-  .dark-modal .ant-btn {
-    color: #fff;
-    border-color: #555;
-  }
