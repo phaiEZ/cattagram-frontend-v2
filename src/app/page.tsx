@@ -35,7 +35,6 @@ const Home: React.FC = () => {
         const userData = await fetchUser();
         console.log(userData);
         setCatProfile(userData);
-
         Cookies.set("userId", userData?.id);
       } catch (error: any) {
         message.error(error.message);

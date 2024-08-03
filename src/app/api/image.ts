@@ -27,3 +27,13 @@ export const uploadImage = async (values: uploadImg) => {
 
   return response.data;
 };
+
+export const deleteImage = async (id: string) => {
+  try {
+    const response = await apiClient.delete(`/image/${id}`);
+
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to delete Image.");
+  }
+};

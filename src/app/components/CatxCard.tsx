@@ -1,18 +1,21 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Dropdown, Popconfirm, message } from "antd";
+
 import { CatxPost } from "../type/catx";
+import { Button, Dropdown, Popconfirm, message } from "antd";
 import { MoreOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { deleteCatxPost } from "../api/catx";
 import Cookies from "js-cookie";
 import ModalEditPost from "./ModalEditPost";
+import { useRouter } from "next/navigation";
 
 interface CatxCardProps {
   catxPost: CatxPost;
 }
 
 const CatxCard: React.FC<CatxCardProps> = ({ catxPost }) => {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
@@ -85,14 +88,20 @@ const CatxCard: React.FC<CatxCardProps> = ({ catxPost }) => {
           catxPost={catxPost}
         />
         <div className="flex flex-row items-center gap-4">
-          <img
-            className="h-16 w-16 object-cover rounded-full"
-            src={catxPost.user.profilePic}
-            alt="Cat Profile"
-          />
+          <button onClick={() => router.push(`/${catxPost.user.id}`)}>
+            <img
+              className="h-16 w-16 object-cover rounded-full"
+              src={catxPost.user.profilePic}
+              alt="Cat Profile"
+            />
+          </button>
           <div>
             <div className="font-bold flex items-center gap-1">
-              <div className="text-xl">{catxPost.user.username}</div>
+              <button onClick={() => router.push(`/${catxPost.user.id}`)}>
+                <div className="text-xl hover:underline">
+                  {catxPost.user.username}
+                </div>
+              </button>
             </div>
             <div className="text-md text-gray-600">
               {new Date(catxPost.created).toLocaleDateString()}

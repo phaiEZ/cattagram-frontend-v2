@@ -38,6 +38,31 @@ export const signup = async (values: any) => {
   }
 };
 
+export const getUserInfoById = async (userId: string) => {
+  try {
+    const response = await apiClient.get(`/user/${userId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch user information");
+  }
+};
 export const logout = () => {
   Cookies.remove("token");
+};
+
+export const updateUserInfo = async (values: any) => {
+  try {
+    const response = await apiClient.patch(
+      "/user/update-info",
+      qs.stringify(values),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to update user information");
+  }
 };
