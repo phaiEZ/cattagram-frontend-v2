@@ -10,4 +10,5 @@ export type CatProfile = {
   breeds: string;
   description: string;
   profilePic: string;
+  birthPlace: string;
 };

@@ -67,10 +67,10 @@ const ProtectedPage: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col  font-kanit my-auto gap-2">
-              <div>เพศ : {catProfile?.gender}</div>
-              <div>เจ้าของ : {catProfile?.ownerName}</div>
-              <div>เจ้าของ : {catProfile?.ownerName}</div>
-              <div>เจ้าของ : {catProfile?.ownerName}</div>
+              <div>Gender : {catProfile?.gender}</div>
+              <div>Owner Name : {catProfile?.ownerName}</div>
+              <div>Breeds : {catProfile?.breeds}</div>
+              <div>Cat's birthplace : {catProfile?.birthPlace}</div>
             </div>
           </div>
           <div className="font-kanit w-5/6   text-[#000000] bg-white  border-2 p-2 my-2 rounded-md border-slate-100    ">

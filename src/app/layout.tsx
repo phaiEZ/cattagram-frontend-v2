@@ -12,7 +12,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
   const pathname = usePathname();
 
   // Hide navbar on login page
-  const showNavbar = pathname !== "/login";
+  const showNavbar = pathname !== "/signin" && pathname !== "/signup";
 
   return (
     <html lang="en">

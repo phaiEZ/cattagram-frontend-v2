@@ -51,8 +51,9 @@ const Navbar: React.FC = () => {
 
   const onClick: MenuProps["onClick"] = (e) => {
     if (e.key === "logout") {
-      Cookies.remove("auth_token");
-      router.push("/login");
+      Cookies.remove("token");
+      Cookies.remove("userId");
+      router.push("/signin");
     } else {
       router.push(e.key);
     }

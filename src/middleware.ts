@@ -8,11 +8,11 @@ export function middleware(req: NextRequest) {
 
   const url = req.nextUrl.clone();
 
-  console.log("Token from cookie:", token);
+  // console.log("Token from cookie:", token);
 
   if (!token) {
     console.log("No token found");
-    url.pathname = "/login";
+    url.pathname = "/signin";
     return NextResponse.redirect(url);
   }
 
@@ -20,5 +20,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/protected/:path*", "/"],
+  matcher: ["/protected/:path*", "/", "/profile"],
 };

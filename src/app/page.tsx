@@ -6,10 +6,26 @@ import { fetchUser, logout } from "./api/userApi";
 import { CatProfile } from "./type/user";
 import Cookies from "js-cookie";
 import { message } from "antd";
+import { Button, Modal, Divider, Input } from "antd";
 
 const Home: React.FC = () => {
   const router = useRouter();
+  const { TextArea } = Input;
   const [catProfile, setCatProfile] = useState<CatProfile | null>(null);
+
+  const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsPostModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsPostModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsPostModalOpen(false);
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -30,73 +46,76 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center py-8 mb-4 w-full px-96 gap-8">
-      <div className=" bg-slate-900 px-4 p-8 rounded-xl flex items-center gap-4 w-full ">
+      <Modal
+        open={isPostModalOpen}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="post" onClick={handleOk} className="w-full ">
+            <div className="text-xl ">Post</div>
+          </Button>,
+        ]}
+        width={800}>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-row items-center gap-4 ">
+            <img
+              className="h-16 w-16 object-cover rounded-full"
+              src={catProfile?.profilePic}
+            />
+            <div>
+              <div className="font-bold flex items-center gap-1">
+                <div className="text-xl">{catProfile?.catName}</div>
+                <div className="text-md ">({catProfile?.breeds})</div>
+              </div>
+              <div className=" text-md text-gray-600">
+                {catProfile?.ownerName}
+              </div>
+            </div>
+          </div>
+          <TextArea
+            className="w-full"
+            autoSize={{ minRows: 4, maxRows: 4 }}
+            placeholder="What happend to your cat."
+            style={{ fontSize: "20px" }}
+          />
+        </div>
+      </Modal>
+
+      <div className=" bg-white shadow-md px-4 p-8 rounded-xl flex items-center gap-4 w-full ">
         <img
           className="h-16 w-16 object-cover rounded-full"
-          src={catProfile?.profilePic}></img>
-        <div className=" bg-gray-700 p-3 px-4 w-full rounded-full">
-          <div className="text-gray-200">What happend to your cat.</div>
-        </div>
+          src={catProfile?.profilePic}
+        />
+        <button
+          className=" bg-gray-300 p-3 px-4 w-full rounded-full hover:bg-gray-400"
+          onClick={showModal}>
+          <div className="text-gray-500 text-left">
+            What happend to your cat.
+          </div>
+        </button>
       </div>
 
-      <div className=" bg-slate-900 px-4 p-4 rounded-xl flex flex-col gap-4 w-full ">
+      <div className=" bg-white shadow-md px-4 p-4 rounded-xl flex flex-col gap-4 w-full ">
         <div className="flex flex-row items-center gap-4">
           <img
             className="h-16 w-16 object-cover rounded-full"
-            src={catProfile?.profilePic}></img>
-          <div className="text-white">
-            <div className="font-bold text-xl">{catProfile?.catName}</div>
-            <div className="text-gray-300">{catProfile?.created}</div>
+            src={catProfile?.profilePic}
+          />
+          <div>
+            <div className="font-bold flex items-center gap-1">
+              <div className="text-xl">{catProfile?.catName}</div>
+              <div className="text-md ">({catProfile?.breeds})</div>
+            </div>
+            <div className=" text-md text-gray-600">
+              {catProfile?.ownerName}
+            </div>
+            <div className="text-gray-400">{catProfile?.created}</div>
           </div>
         </div>
-        <div className="text-white text-xl p-2">{catProfile?.description}</div>
-        <div className="text-white text-xl bg-slate-700 px-8 py-2 rounded-md mr-auto">
-          comment
-        </div>
-      </div>
-      <div className=" bg-slate-900 px-4 p-4 rounded-xl flex flex-col gap-4 w-full ">
-        <div className="flex flex-row items-center gap-4">
-          <img
-            className="h-16 w-16 object-cover rounded-full"
-            src={catProfile?.profilePic}></img>
-          <div className="text-white">
-            <div className="font-bold text-xl">{catProfile?.catName}</div>
-            <div className="text-gray-300">{catProfile?.created}</div>
-          </div>
-        </div>
-        <div className="text-white text-xl p-2">{catProfile?.description}</div>
-        <div className="text-white text-xl bg-slate-700 px-8 py-2 rounded-md mr-auto">
-          comment
-        </div>
-      </div>
-      <div className=" bg-slate-900 px-4 p-4 rounded-xl flex flex-col gap-4 w-full ">
-        <div className="flex flex-row items-center gap-4">
-          <img
-            className="h-16 w-16 object-cover rounded-full"
-            src={catProfile?.profilePic}></img>
-          <div className="text-white">
-            <div className="font-bold text-xl">{catProfile?.catName}</div>
-            <div className="text-gray-300">{catProfile?.created}</div>
-          </div>
-        </div>
-        <div className="text-white text-xl p-2">{catProfile?.description}</div>
-        <div className="text-white text-xl bg-slate-700 px-8 py-2 rounded-md mr-auto">
-          comment
-        </div>
-      </div>
-      <div className=" bg-slate-900 px-4 p-4 rounded-xl flex flex-col gap-4 w-full ">
-        <div className="flex flex-row items-center gap-4">
-          <img
-            className="h-16 w-16 object-cover rounded-full"
-            src={catProfile?.profilePic}></img>
-          <div className="text-white">
-            <div className="font-bold text-xl">{catProfile?.catName}</div>
-            <div className="text-gray-300">{catProfile?.created}</div>
-          </div>
-        </div>
-        <div className="text-white text-xl p-2">{catProfile?.description}</div>
-        <div className="text-white text-xl bg-slate-700 px-8 py-2 rounded-md mr-auto">
-          comment
+        <div className="text-black text-xl p-2">{catProfile?.description}</div>
+        <div className="grid grid-cols-4">
+          <Button>
+            <div className="text-gray-600 font-bold">comment</div>
+          </Button>
         </div>
       </div>
     </div>
