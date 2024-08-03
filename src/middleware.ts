@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import cookie from "cookie";
-import { verifyToken } from "./utils/jwt"; // Ensure the correct path
+import { verifyToken } from "./utils/jwt";
 
 export function middleware(req: NextRequest) {
   const cookies = cookie.parse(req.headers.get("cookie") || "");

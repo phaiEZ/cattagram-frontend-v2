@@ -127,64 +127,66 @@ const ProtectedPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <Tabs
-        defaultActiveKey="1"
-        type="card"
-        size="large"
-        items={[
-          {
-            label: `CatX`,
-            key: "1",
-            children: (
-              <div className="flex flex-col gap-4 px-32 py-8 ">
-                <div className="bg-white shadow-md px-4 p-8 rounded-xl flex items-center gap-4 w-full">
-                  <img
-                    className="h-16 w-16 object-cover rounded-full"
-                    src={catProfile?.profilePic}
-                  />
-                  <button
-                    className="bg-gray-300 p-3 px-4 w-full rounded-full hover:bg-gray-400"
-                    onClick={showModal}>
-                    <div className="text-gray-500 text-left">
-                      What happened to your cat.
-                    </div>
-                  </button>
-                </div>
-                <div className="gap-8 flex flex-col w-full">
-                  {catxs.map((catxPost) => (
-                    <CatxCard key={catxPost.id} catxPost={catxPost} />
-                  ))}
-                </div>
-              </div>
-            ),
-          },
-          {
-            label: `Photos`,
-            key: "2",
-            children: (
-              <div className="flex flex-col gap-4 ">
-                <Button onClick={showUploadModal}>Upload Image</Button>
-                <div className="grid grid-cols-4 gap-8 ">
-                  {images.map((image, index) => (
-                    <div
-                      key={index}
-                      className="bg-white p-4 pb-8 shadow-md mx-auto ml-0 flex flex-col gap-4">
-                      <img
-                        src={image.img}
-                        alt={`User image ${index}`}
-                        className="h-[300px] w-[300px] object-cover"
-                      />
-                      <div className="text-kanit text-md">
-                        {image.description}
+      <div className="px-24">
+        <Tabs
+          defaultActiveKey="1"
+          type="card"
+          size="large"
+          items={[
+            {
+              label: `CatX`,
+              key: "1",
+              children: (
+                <div className="flex flex-col gap-4  py-8 ">
+                  <div className="bg-white shadow-md px-4 p-8 rounded-xl flex items-center gap-4 w-full">
+                    <img
+                      className="h-16 w-16 object-cover rounded-full"
+                      src={catProfile?.profilePic}
+                    />
+                    <button
+                      className="bg-gray-300 p-3 px-4 w-full rounded-full hover:bg-gray-400"
+                      onClick={showModal}>
+                      <div className="text-gray-500 text-left">
+                        What happened to your cat.
                       </div>
-                    </div>
-                  ))}
+                    </button>
+                  </div>
+                  <div className="gap-8 flex flex-col w-full">
+                    {catxs.map((catxPost) => (
+                      <CatxCard key={catxPost.id} catxPost={catxPost} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ),
-          },
-        ]}
-      />
+              ),
+            },
+            {
+              label: `Photos`,
+              key: "2",
+              children: (
+                <div className="flex flex-col gap-4 ">
+                  <Button onClick={showUploadModal}>Upload Image</Button>
+                  <div className="grid grid-cols-4 gap-8 ">
+                    {images.map((image, index) => (
+                      <div
+                        key={index}
+                        className="bg-white p-4 pb-8 shadow-md mx-auto ml-0 flex flex-col gap-4">
+                        <img
+                          src={image.img}
+                          alt={`User image ${index}`}
+                          className="h-[300px] w-[300px] object-cover"
+                        />
+                        <div className="text-kanit text-md">
+                          {image.description}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ),
+            },
+          ]}
+        />
+      </div>
     </div>
   );
 };

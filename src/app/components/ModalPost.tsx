@@ -24,8 +24,8 @@ const ModalPost: React.FC<ModalPostProps> = ({
       .then((values) => {
         createCatxPost(values);
         message.success("Post created successfully");
+        window.location.reload();
         form.resetFields();
-
         onClose();
       })
       .catch((info) => {

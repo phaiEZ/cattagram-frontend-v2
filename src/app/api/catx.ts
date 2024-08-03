@@ -42,3 +42,25 @@ export const createCatxPost = async (values: createCatxPost) => {
     throw new Error("Failed to create cat post");
   }
 };
+
+export const deleteCatxPost = async (id: string) => {
+  try {
+    const response = await apiClient.delete(`/catx/${id}`);
+
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to delete cat post");
+  }
+};
+
+export const updateCatxPost = async (id: string, description: string) => {
+  try {
+    const response = await apiClient.patch(`/catx/${id}`, {
+      description,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to update cat post");
+  }
+};

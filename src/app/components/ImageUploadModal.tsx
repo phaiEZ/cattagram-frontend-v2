@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Modal, Button, Input, Form, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { uploadImage } from "../api/image";
-import { useRouter } from "next/navigation";
 
 interface ImageUploadModalProps {
   visible: boolean;
@@ -14,7 +13,7 @@ const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
   onClose,
 }) => {
   const [form] = Form.useForm();
-  const router = useRouter();
+
   const [fileList, setFileList] = useState<any[]>([]);
 
   const handleOk = async () => {
@@ -52,7 +51,7 @@ const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
           form.resetFields();
           setFileList([]);
           onClose();
-          router.refresh(); // Refresh the page after upload
+          window.location.reload();
         };
       } else {
         message.error("Please select an image to upload");
