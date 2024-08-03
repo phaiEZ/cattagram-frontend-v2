@@ -15,6 +15,7 @@ import ImageUploadModal from "../components/ImageUploadModal";
 import { useParams, useRouter } from "next/navigation";
 import ImageCard from "../components/ImageCard";
 import ModalUpdateInfo from "../components/ModalUpdateInfo";
+import ModalChangePassword from "../components/ModalChangePassword";
 
 const Page: React.FC = () => {
   const [userData, setUserData] = useState<CatProfile | null>(null);
@@ -25,6 +26,8 @@ const Page: React.FC = () => {
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] =
+    useState(false);
 
   const params = useParams();
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
@@ -51,6 +54,14 @@ const Page: React.FC = () => {
 
   const handleUpdateModalClose = () => {
     setIsUpdateModalOpen(false);
+  };
+
+  const showChangePasswordModal = () => {
+    setIsChangePasswordModalOpen(true);
+  };
+
+  const handleChangePasswordModalClose = () => {
+    setIsChangePasswordModalOpen(false);
   };
 
   useEffect(() => {
@@ -129,6 +140,10 @@ const Page: React.FC = () => {
         visible={isUploadModalOpen}
         onClose={handleUploadModalClose}
       />
+      <ModalChangePassword
+        visible={isChangePasswordModalOpen}
+        onClose={handleChangePasswordModalClose}
+      />
       <div className="flex w-full gap-16 justify-center">
         <div className="bg-white p-4 pb-12 shadow-lg">
           <img
@@ -152,19 +167,24 @@ const Page: React.FC = () => {
               <div>Breeds : {catProfile?.breeds}</div>
               <div>Cat's birthplace : {catProfile?.birthPlace}</div>
             </div>
-
-            {userData?.id === catProfile?.id && (
-              <Button onClick={showUpdateModal} className="ml-auto">
-                Edit Info
-              </Button>
-            )}
+            <div className="flex flex-col ml-auto gap-2">
+              {userData?.id === catProfile?.id && (
+                <Button onClick={showUpdateModal} className="ml-auto">
+                  Edit Info
+                </Button>
+              )}
+              {userData?.id === catProfile?.id && (
+                <Button onClick={showChangePasswordModal}>
+                  Change Password
+                </Button>
+              )}
+            </div>
           </div>
           <div className="font-kanit w-5/6 text-[#000000] bg-white border-2 p-2 my-2 rounded-md border-slate-100">
             {catProfile?.description}
           </div>
         </div>
       </div>
-
       <div className="px-24">
         <Tabs
           defaultActiveKey="1"

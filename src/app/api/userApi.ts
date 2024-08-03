@@ -66,3 +66,23 @@ export const updateUserInfo = async (values: any) => {
     throw new Error("Failed to update user information");
   }
 };
+
+export const changePassword = async (values: {
+  oldPassword: string;
+  newPassword: string;
+}) => {
+  try {
+    const response = await apiClient.patch(
+      "/user/change-password",
+      qs.stringify(values),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to change password");
+  }
+};
