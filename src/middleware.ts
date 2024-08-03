@@ -8,8 +8,6 @@ export function middleware(req: NextRequest) {
 
   const url = req.nextUrl.clone();
 
-  // console.log("Token from cookie:", token);
-
   if (!token) {
     console.log("No token found");
     url.pathname = "/signin";
