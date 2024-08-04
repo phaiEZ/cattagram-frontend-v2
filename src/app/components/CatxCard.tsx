@@ -9,6 +9,7 @@ import { deleteCatxPost } from "../api/catx";
 import Cookies from "js-cookie";
 import ModalEditPost from "./ModalEditPost";
 import { useRouter } from "next/navigation";
+import CatxComments from "./CatxComments";
 
 interface CatxCardProps {
   catxPost: CatxPost;
@@ -119,11 +120,7 @@ const CatxCard: React.FC<CatxCardProps> = ({ catxPost }) => {
           )}
         </div>
         <div className="text-black text-xl p-2">{catxPost.description}</div>
-        <div className="grid grid-cols-4">
-          <Button>
-            <div className="text-gray-600 font-bold">comment</div>
-          </Button>
-        </div>
+        <CatxComments catxId={catxPost.id} />
       </div>
     </Popconfirm>
   );
