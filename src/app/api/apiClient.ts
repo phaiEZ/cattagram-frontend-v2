@@ -1,8 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: apiBaseUrl,
 });
 
 apiClient.interceptors.request.use((config) => {

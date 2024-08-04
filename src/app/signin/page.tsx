@@ -6,7 +6,7 @@ import { Form, Input, Button, message } from "antd";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import Link from "next/link";
-import { login } from "../api/authApi"; // Adjust the import path as necessary
+import { login } from "../api/authApi";
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);

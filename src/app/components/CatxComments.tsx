@@ -11,8 +11,11 @@ import { comment } from "postcss";
 interface CatxCommentsProps {
   catxId: string;
 }
+import { useRouter } from "next/navigation";
 
 const CatxComments: React.FC<CatxCommentsProps> = ({ catxId }) => {
+  const router = useRouter();
+
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState<string>("");
   const userId = Cookies.get("userId");
@@ -56,14 +59,20 @@ const CatxComments: React.FC<CatxCommentsProps> = ({ catxId }) => {
     <div className="w-full ">
       {comments.map((comment) => (
         <div className="flex gap-2 mb-2 items-center ">
-          <img
-            className="h-10 w-10 object-cover rounded-full "
-            src={comment.user.profilePic}
-            alt="Cat Profile"
-          />
+          <button onClick={() => router.push(`/${comment.user.id}`)}>
+            <img
+              className="h-10 w-10 object-cover rounded-full "
+              src={comment.user.profilePic}
+              alt="Cat Profile"
+            />
+          </button>
           <div className="flex flex-col  ">
             <div className="flex gap-2">
-              <div className="font-bold">{comment.user.username}</div>
+              <button onClick={() => router.push(`/${comment.user.id}`)}>
+                <div className="font-bold hover:underline">
+                  {comment.user.username}
+                </div>
+              </button>
               <div className=" text-gray-500">
                 {new Date(comment.created).toLocaleDateString()}
               </div>
