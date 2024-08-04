@@ -2,6 +2,17 @@
 
 Cattagram is a social media platform for sharing cat photos and updates. This repository contains both the frontend and backend for the Cattagram application.
 
+## Stacks
+
+- **Frontend**: Next.js
+- **Backend**: Nest.js
+- **Database**: PostgreSQL
+
+## Repository
+
+- **Backend**: [cattagram-backend](https://github.com/phaiEZ/cattagram-backend)
+- **Frontend**: [cattagram-frontend-v2](https://github.com/phaiEZ/cattagram-frontend-v2)
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -64,7 +75,7 @@ The backend server will start on http://localhost:8000.
 1. Clone the frontend repository:
 
 ```bash
-    git clone https://github.com/phaiEZ/cattagram-frontend
+    git clone https://github.com/phaiEZ/cattagram-frontend-v2
     cd cattagram-frontend
 ```
 
